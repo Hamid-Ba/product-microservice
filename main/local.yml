@@ -8,6 +8,31 @@ services:
     container_name: main
     volumes:
       - .:/app
+    depends_on:
+      - postgres
     ports:
       - "8001:80"
+    networks:
+      - main_proj
     
+  postgres:
+    image: postgres:13-alpine
+    container_name: postgres
+    restart: always
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.local/.postgres
+    networks:
+      - main_proj
+    ports:
+      - 54033:5432
+
+networks:
+  main_proj:
+    driver: bridge
+
+volumes:
+  local_postgres_data: {}
+  static_volume:
+  media_volume:
