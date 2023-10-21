@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  main:
+    build:
+      context: .
+      dockerfile: ./docker/local/fastapi/DockerFile
+    container_name: main
+    volumes:
+      - .:/app
+    ports:
+      - "8001:80"
+    
