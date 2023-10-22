@@ -1,18 +1,10 @@
 from persistence.models import Product
+from infrastructure.dependencies import main_context
 
 class ProductService:
     
-    def get_all(self):
-        keys = Product.all_pks()
-        
-        for key in keys:
-            product = Product.get(key)
-            yield {
-                "id": product.pk,
-                "name": product.name,
-                "price": product.price,
-                "quantity": product.quantity
-            }
+    def get_all(self, context: main_context):    
+        return context.query(Product).all()        
     
     def get_by(self, id: str):
         try:

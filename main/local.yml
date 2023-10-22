@@ -17,7 +17,7 @@ services:
     
   postgres:
     image: postgres:13-alpine
-    container_name: postgres
+    container_name: main_postgres
     restart: always
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
@@ -34,5 +34,3 @@ networks:
 
 volumes:
   local_postgres_data: {}
-  static_volume:
-  media_volume:

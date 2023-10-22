@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 
 from DTOs.products import ProductDTO
 from services.products import product_service
+from infrastructure.dependencies import main_context
 
 router = APIRouter(
     prefix="/products",
@@ -9,8 +10,8 @@ router = APIRouter(
 )
 
 @router.get("/")
-async def all():
-    return product_service.get_all()
+async def all(context: main_context):
+    return product_service.get_all(context)
 
 @router.get("/{id}")
 async def product(id: str):
