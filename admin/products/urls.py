@@ -12,4 +12,5 @@ app_name = "products"
 urlpatterns = [
     path("", include(router.urls)),
     path("user/", views.UserAPIView.as_view(), name="rand_user"),
+    path("like/<int:id>/",views.LikeProductAPIView.as_view(), name="like_view"),
 ]
